@@ -93,7 +93,8 @@ def regra_1_2_2_1(n_linhas, n_colunas, tabuleiro):
     while d < len(dicionarioQuadradosValor):
         if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 1) and \
                 dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 4):
-            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [2, 'A'] and dicionarioQuadradosValor[d + 2] == [2, 'A'] and dicionarioQuadradosValor[d + 3] == [1, 'A'] and \
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [2, 'A'] and \
+                    dicionarioQuadradosValor[d + 2] == [2, 'A'] and dicionarioQuadradosValor[d + 3] == [1, 'A'] and \
                     dicionarioQuadradosValor[d - 1][0] == 'A' and \
                     dicionarioQuadradosValor[d + 4][0] == 'A' and \
                     dicionarioQuadradosValor[d - n_linhas][0] == 'A' and \
@@ -115,6 +116,38 @@ def regra_1_2_2_1(n_linhas, n_colunas, tabuleiro):
                 ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas - 1])
                 ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas + 3])
                 ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas + 4])
+        d = d + 1
+    return ocorrencias
+
+
+def regra_1_2_1(n_linhas, n_colunas, tabuleiro):
+    d = 1
+    ocorrencias = []
+    dicionarioQuadradosLocal = listarQuadradosLocal(n_linhas, n_colunas, tabuleiro)
+    dicionarioQuadradosValor = listarQuadradosValor(n_linhas, n_colunas, tabuleiro)
+    while d < len(dicionarioQuadradosValor):
+        if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 1) and \
+                dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 3):
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [2, 'A'] and \
+                    dicionarioQuadradosValor[d + 2] == [1, 'A'] and \
+                    dicionarioQuadradosValor[d - 1][0] == 'A' and \
+                    dicionarioQuadradosValor[d + 3][0] == 'A' and \
+                    dicionarioQuadradosValor[d - n_linhas][0] == 'A' and \
+                    dicionarioQuadradosValor[d - n_linhas + 1][0] == 'A' and \
+                    dicionarioQuadradosValor[d - n_linhas + 2][0] == 'A' and \
+                    dicionarioQuadradosValor[d - n_linhas + 3][0] == 'A' and \
+                    dicionarioQuadradosValor[d - n_linhas - 1][0] == 'A' and \
+                    dicionarioQuadradosValor[d + n_linhas][1] == 'I' and \
+                    dicionarioQuadradosValor[d + n_linhas + 1][1] == 'I' and \
+                    dicionarioQuadradosValor[d + n_linhas + 2][1] == 'I' and \
+                    dicionarioQuadradosValor[d + n_linhas + 3][1] == 'I' and \
+                    dicionarioQuadradosValor[d + n_linhas - 1][1] == 'I':
+                print("achei regra 1_2_1")
+                tabuleiro[dicionarioQuadradosLocal[d][0] + 1, dicionarioQuadradosLocal[d][1] + 2][1] = 'F'
+                tabuleiro[dicionarioQuadradosLocal[d][0] + 1, dicionarioQuadradosLocal[d][1]][1] = 'F'
+                ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas - 1])
+                ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas + 1])
+                ocorrencias.append(dicionarioQuadradosLocal[d + n_linhas + 3])
         d = d + 1
     return ocorrencias
 
