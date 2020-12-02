@@ -15,7 +15,7 @@ import RegrasBasicas
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 5
+qtdBombas = 3
 qtdLinhasTabela = 8
 qtdColunasTabela = 8
 
@@ -374,8 +374,16 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
             click(rule12[0], rule12[1], tabuleiro, n_linhas, n_colunas)
 
         rule11 = RegrasBasicas.regra_1_1(n_linhas, n_colunas, tabuleiro)
-        if rule12 != "SO":
+        if rule11 != "SO":
             click(rule11[0], rule11[1], tabuleiro, n_linhas, n_colunas)
+
+        rule1221 = RegrasBasicas.regra_1_2_2_1(n_linhas, n_colunas, tabuleiro)
+        if len(rule1221) != 0:
+            r = 0
+            while r <= 4:
+                click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                r = r + 1
+
         reps = reps + 1
 
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
