@@ -9,14 +9,15 @@ Controle Versão: Correção da função de click
 # ----------------- Imports ----------------------
 import random
 import Tabuleiro
+import RegrasBasicas
 
 # ------------------------------------------------
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 1
-qtdLinhasTabela = 5
-qtdColunasTabela = 5
+qtdBombas = 5
+qtdLinhasTabela = 8
+qtdColunasTabela = 8
 
 
 # --------------------------------------------------
@@ -76,8 +77,7 @@ def virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas):
             # print('tamanho p',len(qVizinhos))
             # print('-----',qVizinhos[p][0],qVizinhos[p][1])
             # print('-----',tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][0],tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][1])
-            if tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][0] == 0 and tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][
-                1] == 'I':
+            if tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][0] == 0 and tabuleiro[qVizinhos[p][0]][qVizinhos[p][1]][1] == 'I':
                 # print('estou no if')
                 # print('r 1',r)
                 if r == 0 and p == 0:
@@ -261,8 +261,7 @@ def posicionamento2(i, j, tabuleiro):
     return posicao
 
 
-'''  x xx
-     x21x
+'''
 0000 | x000 | xxxx | 000x | condição 1 - existir quadrado Q1 aberto(A) e com valor 1
 0000 | x100 | 0120 | 001x | condição 2 - Q1 ter um vizinho Q2, tambem aberto(A) com valor 2
 0120 | x200 | 0000 | 002x | condição 3 - existir 6 vizinhos consecutivos de Q1Q2 aberto(A) e com valor 0 
@@ -277,7 +276,7 @@ def regra_1_2(n_linhas, n_colunas, tabuleiro):
     for i in range(n_linhas):
         for j in range(n_colunas):
             contador = contador + 1
-            if (tabuleiro[i][j][0] == 1):
+            if tabuleiro[i][j][0] == 1:
                 listaQuadrados_1.append(contador)
 
     print(listaQuadrados_1)
@@ -289,11 +288,11 @@ def regra_1_2(n_linhas, n_colunas, tabuleiro):
             if indiceQ[0] > 0 and indiceQ[0] < (n_linhas - 1) and indiceQ[1] > 0 and indiceQ[1] < (n_colunas - 1):
                 # print("xxx--->",tabuleiro[indiceQ[0]][indiceQ[1]])
                 # print("xxx--->",tabuleiro[indiceQ[0]][indiceQ[1]+1])
-                if (posicionamento1(indiceQ[0], indiceQ[1], tabuleiro) == "ok"):
+                if posicionamento1(indiceQ[0], indiceQ[1], tabuleiro) == "ok":
                     print("achei!!")
                     tabuleiro[indiceQ[0] + 1][indiceQ[1] + 2][1] = 'F'
                     click(indiceQ[0] + 1, indiceQ[1] - 1, tabuleiro, n_linhas, n_colunas)
-                if (posicionamento2(indiceQ[0], indiceQ[1], tabuleiro) == "ok"):
+                if posicionamento2(indiceQ[0], indiceQ[1], tabuleiro) == "ok":
                     print("achei!!")
                     tabuleiro[indiceQ[0] + 1][indiceQ[1] - 2][1] = 'F'
                     click(indiceQ[0] + 1, indiceQ[1] + 1, tabuleiro, n_linhas, n_colunas)
@@ -331,12 +330,12 @@ def forcaBruta(n_linhas, n_colunas, n_bombas):
             quadradoSorteado = encontrarQuadradoPeloNumero(numQuadradoSorteado, n_linhas, n_colunas, tabuleiro)
             print("Clique -", reps, "|Posição -", numQuadradoSorteado, "|Quadrado-", quadradoSorteado)
             status = click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
-            if (status == 'interromper'):
+            if status == 'interromper':
                 print('Game Over')
                 Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
                 derrotas = derrotas + 1
                 break
-            if ((reps + 1) == ((n_linhas * n_colunas) - n_bombas)):
+            if (reps + 1) == ((n_linhas * n_colunas) - n_bombas):
                 vitorias = 1
         jogos = jogos + 1
 
@@ -347,23 +346,38 @@ def forcaBruta(n_linhas, n_colunas, n_bombas):
 def simularClickAleatorio(n_linhas, n_colunas, tabuleiro):
     lista = listarQuadradosInativos(n_linhas, n_colunas, tabuleiro)
     print('lista quadrados inativos -', lista)
+    valido = ''
+    resultado = "continuar"
     numQuadradoSorteado = random.choice(lista)
     quadradoSorteado = encontrarQuadradoPeloNumero(numQuadradoSorteado, n_linhas, n_colunas, tabuleiro)
-    print('quadrado clicado -', quadradoSorteado)
-    status = click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
-    if (status == 'interromper'):
-        print('Game Over')
-        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
-    # imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+    if tabuleiro[quadradoSorteado[0]][quadradoSorteado[1]][1] == 'F':
+        simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+    else:
+        print('quadrado clicado -', quadradoSorteado)
+        status = click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
+        if status == 'interromper':
+            resultado = "Game Over"
+            print(resultado)
+    return resultado
 
 
-def rotinaRegrasBasicas(n_linhas, n_colunas):
+def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
     tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
-    for x in range(4):
-        simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
-        regra_1_2(n_linhas, n_colunas, tabuleiro)
-        # regra_1_1(n_linhas,n_colunas,tabuleiro)
+    resultado = "continuar"
+    reps = 0
+    while resultado == "continuar" and reps <= ((n_linhas * n_colunas) - n_bombas):
+        resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+
+        rule12 = RegrasBasicas.regra_1_2(n_linhas, n_colunas, tabuleiro)
+        if rule12 != "SO":
+            click(rule12[0], rule12[1], tabuleiro, n_linhas, n_colunas)
+
+        rule11 = RegrasBasicas.regra_1_1(n_linhas, n_colunas, tabuleiro)
+        if rule12 != "SO":
+            click(rule11[0], rule11[1], tabuleiro, n_linhas, n_colunas)
+        reps = reps + 1
+
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
 
@@ -398,7 +412,7 @@ def testes(n_linhas, n_colunas):
 # ---------------------------------------------------------------------------------------------------
 
 # forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
-rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela)
+rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 # testeBasico()
 # testes(qtdLinhasTabela,qtdColunasTabela)
 
