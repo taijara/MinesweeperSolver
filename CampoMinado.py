@@ -9,15 +9,16 @@ Controle Versão: Correção da função de click
 # ----------------- Imports ----------------------
 import random
 import Tabuleiro
+import Regra_1_2
 import RegrasBasicas
 
 # ------------------------------------------------
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 6
-qtdLinhasTabela = 8
-qtdColunasTabela = 8
+qtdBombas = 2
+qtdLinhasTabela = 5
+qtdColunasTabela = 5
 
 
 # --------------------------------------------------
@@ -61,7 +62,7 @@ def listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas):
 
 # --------- Função para Virar Quadrados Vizinhos --------------
 def virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas):
-    # print('teste inicio funcao -')
+    print('teste inicio funcao -')
     qVizinhos = listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas)
     # print('quadrados vizinhos',qVizinhos)
     listaVirar = [(0, 0)]
@@ -177,9 +178,11 @@ def colocarFlag(tabuleiro, i, j):
 def click(linha, coluna, tabuleiro, n_linhas, n_colunas):
     virarQuadrado(linha, coluna, tabuleiro)
     resultado = validarQuadrado(linha, coluna, tabuleiro)
+    print(tabuleiro[linha][coluna])
+    print(tabuleiro[linha][coluna][0])
     if (resultado == 'ok'):
-        if (tabuleiro[linha][coluna][1] == 'A' and tabuleiro[linha][coluna][0] == 0):
-            virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas)
+        #if (tabuleiro[linha][coluna][1] == 'A' and tabuleiro[linha][coluna][0] == 0):
+        virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas)
         status = 'continuar'
     else:
         status = 'interromper'
@@ -362,44 +365,37 @@ def simularClickAleatorio(n_linhas, n_colunas, tabuleiro):
 
 
 def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
-    tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
-    resultado = "continuar"
-    reps = 0
-    while resultado == "continuar" and reps <= ((n_linhas * n_colunas) - n_bombas):
-        resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
 
-        rule12 = RegrasBasicas.regra_1_2(n_linhas, n_colunas, tabuleiro)
-        if rule12 != "SO":
-            click(rule12[0], rule12[1], tabuleiro, n_linhas, n_colunas)
+    while vitorias == 0:
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
-        rule11 = RegrasBasicas.regra_1_1(n_linhas, n_colunas, tabuleiro)
-        if rule11 != "SO":
-            click(rule11[0], rule11[1], tabuleiro, n_linhas, n_colunas)
+        resultado = "continuar"
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+            if resultado == "continuar":
+                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule12) != 0:
+                    r = 0
+                    while r <= len(rule12)-1:
+                        click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+                reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+            else:
+                derrotas = derrotas + 1
 
-        rule1221 = RegrasBasicas.regra_1_2_2_1(n_linhas, n_colunas, tabuleiro)
-        if len(rule1221) != 0:
-            r = 0
-            while r <= 4:
-                click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
-                r = r + 1
-
-        rule121 = RegrasBasicas.regra_1_2_1(n_linhas, n_colunas, tabuleiro)
-        if len(rule121) != 0:
-            r = 0
-            while r <= 2:
-                click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
-                r = r + 1
-
-        rule131 = RegrasBasicas.regra_1_3_1(n_linhas, n_colunas, tabuleiro)
-        if len(rule131) != 0:
-            r = 0
-            while r <= 2:
-                click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
-                r = r + 1
-
-        reps = reps + 1
-
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
 
