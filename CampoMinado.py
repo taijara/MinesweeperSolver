@@ -10,13 +10,13 @@ Controle Versão: Correção da função de click
 import random
 import Tabuleiro
 import Regra_1_2
-import RegrasBasicas
+import Regra_1_2_1
 
 # ------------------------------------------------
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 5
+qtdBombas = 2
 qtdLinhasTabela = 5
 qtdColunasTabela = 5
 
@@ -386,6 +386,12 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
                     r = 0
                     while r <= len(rule12)-1:
                         click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule121) != 0:
+                    r = 0
+                    while r <= len(rule121) - 1:
+                        click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
                         r = r + 1
                 reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
                 if reps == 0:
