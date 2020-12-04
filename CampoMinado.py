@@ -16,7 +16,7 @@ import RegrasBasicas
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 2
+qtdBombas = 5
 qtdLinhasTabela = 5
 qtdColunasTabela = 5
 
