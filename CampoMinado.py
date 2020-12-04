@@ -11,6 +11,7 @@ import random
 import Tabuleiro
 import Regra_1_2
 import Regra_1_2_1
+import Regra_1_2_2_1
 
 # ------------------------------------------------
 
@@ -381,12 +382,14 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
         while resultado == "continuar" and reps !=0:
             resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
             if resultado == "continuar":
+
                 rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
                 if len(rule12) != 0:
                     r = 0
                     while r <= len(rule12)-1:
                         click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
                         r = r + 1
+
                 rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
                 if len(rule121) != 0:
                     r = 0
@@ -396,6 +399,17 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
                 reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
                 if reps == 0:
                     vitorias = vitorias + 1
+
+                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule1221) != 0:
+                    r = 0
+                    while r <= len(rule1221) - 1:
+                        click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+                reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+
             else:
                 derrotas = derrotas + 1
 
