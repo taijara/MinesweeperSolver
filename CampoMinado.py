@@ -9,6 +9,7 @@ Controle Versão: Correção da função de click
 # ----------------- Imports ----------------------
 import random
 import Tabuleiro
+import Regra_1_1
 import Regra_1_2
 import Regra_1_2_1
 import Regra_1_2_2_1
@@ -383,6 +384,13 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
             resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
             if resultado == "continuar":
 
+                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule11) != 0:
+                    r = 0
+                    while r <= len(rule11) - 1:
+                        click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
                 rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
                 if len(rule12) != 0:
                     r = 0
@@ -396,9 +404,6 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
                     while r <= len(rule121) - 1:
                         click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
                         r = r + 1
-                reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
-                if reps == 0:
-                    vitorias = vitorias + 1
 
                 rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
                 if len(rule1221) != 0:
@@ -406,6 +411,7 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
                     while r <= len(rule1221) - 1:
                         click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
                         r = r + 1
+
                 reps = len(listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
                 if reps == 0:
                     vitorias = vitorias + 1
