@@ -12,6 +12,7 @@ import Tabuleiro
 import Regra_1_1
 import Regra_1_2
 import Regra_1_2_1
+import Regra_1_3_1
 import Regra_1_2_2_1
 
 # ------------------------------------------------
@@ -403,6 +404,13 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
                     r = 0
                     while r <= len(rule121) - 1:
                         click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule131) != 0:
+                    r = 0
+                    while r <= len(rule131) - 1:
+                        click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
                         r = r + 1
 
                 rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
