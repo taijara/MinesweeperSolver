@@ -10,6 +10,7 @@ Controle Versão: Correção da função de click
 import random
 import Tabuleiro
 import ManipulacaoTabuleiro
+import RegraProbabilidade
 import Regra_1_1
 import Regra_1_2
 import Regra_1_2_1
@@ -146,24 +147,71 @@ def rotinaRegrasBasicas(n_linhas, n_colunas, n_bombas):
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
 
-def testeBasico():
-    tabuleiro = Tabuleiro.crie_matriz(qtdLinhasTabela, qtdColunasTabela, 0, 'I')
-    print('posição das bombas')
-    Tabuleiro.sortearBombas(tabuleiro, qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-    Tabuleiro.prencherCamposNum(tabuleiro, qtdLinhasTabela, qtdColunasTabela)
-    print('tabuleiro ANTES do click')
-    print(tabuleiro)
-    ManipulacaoTabuleiro.click(3, 3, tabuleiro, qtdLinhasTabela, qtdColunasTabela)
-    print('tabuleiro DEPOIS do click')
-    print(tabuleiro)
 
+def rotinaRegrasBasicasProbabilidade(n_linhas, n_colunas, n_bombas):
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    while vitorias == 0:
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
-def testes(n_linhas, n_colunas):
-    tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        resultado = simularClickAleatorio(5, 5, tabuleiro)
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            probabilidades = RegraProbabilidade.listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro)
+            resultado = RegraProbabilidade.simularClickProbabilistico(n_linhas, n_colunas, tabuleiro, probabilidades)
+            if resultado == "continuar":
+
+                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule11) != 0:
+                    r = 0
+                    while r <= len(rule11) - 1:
+                        ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule12) != 0:
+                    r = 0
+                    while r <= len(rule12)-1:
+                        ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule121) != 0:
+                    r = 0
+                    while r <= len(rule121) - 1:
+                        ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule131) != 0:
+                    r = 0
+                    while r <= len(rule131) - 1:
+                        ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule1221) != 0:
+                    r = 0
+                    while r <= len(rule1221) - 1:
+                        ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+
+            else:
+                derrotas = derrotas + 1
+
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
-    linha = 0
-    coluna = 0
-    ManipulacaoTabuleiro.listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas)
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -176,10 +224,9 @@ def testes(n_linhas, n_colunas):
 # ---------------------------------- START ROTINAS (INICIO) -----------------------------------------
 # ---------------------------------------------------------------------------------------------------
 
-# forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
-rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-# testeBasico()
-# testes(qtdLinhasTabela,qtdColunasTabela)
+#forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
+#rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+#rotinaRegrasBasicasProbabilidade(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 
 # ---------------------------------------------------------------------------------------------------
 # ---------------------------------- START ROTINAS (FIM) --------------------------------------------
