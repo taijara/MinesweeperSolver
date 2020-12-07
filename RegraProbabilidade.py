@@ -109,7 +109,6 @@ def listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro):
     dicionarioQuadradosLocal = listarQuadradosLocal(n_linhas, n_colunas, tabuleiro)
     for i in range(n_linhas):
         for j in range(n_colunas):
-            #contador = contador + 1
             vizinhos = listarQuadradosVizinhos(contador, n_linhas, n_colunas, dicionarioQuadradosStatus, dicionarioQuadradosValor, dicionarioQuadradosLocal)
             if dicionarioQuadradosStatus[contador] == "I" and vizinhos != []:
                 v = 0
@@ -119,7 +118,10 @@ def listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro):
                         vizinhos.pop(v)
                         v = v - 1
                     v = v + 1
-                probabilidade = round(max(vizinhos, key=int)/qtd_vizinhos, 2)
+                if vizinhos == []:
+                    probabilidade = 0.0
+                else:
+                    probabilidade = round(max(vizinhos, key=int) / qtd_vizinhos, 2)
                 listaProbabilidades.append(probabilidade)
             else:
                 if dicionarioQuadradosStatus[contador] == 'A':

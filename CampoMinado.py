@@ -16,14 +16,17 @@ import Regra_1_2
 import Regra_1_2_1
 import Regra_1_3_1
 import Regra_1_2_2_1
+import time
 
 # ------------------------------------------------
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 2
+qtdBombas = 5
 qtdLinhasTabela = 5
 qtdColunasTabela = 5
+tempoExecucao = 300
+nivel = ''
 
 
 # --------------------------------------------------
@@ -213,6 +216,230 @@ def rotinaRegrasBasicasProbabilidade(n_linhas, n_colunas, n_bombas):
     print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
     Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
 
+def forcaBrutaLog(n_linhas, n_colunas, n_bombas):
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+    end_time = time.time() + tempoExecucao
+    while time.time() < end_time:
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        for reps in range((n_linhas * n_colunas) - n_bombas):
+            lista = ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro)
+            print(lista)
+            numQuadradoSorteado = random.choice(lista)
+            quadradoSorteado = ManipulacaoTabuleiro.encontrarQuadradoPeloNumero(numQuadradoSorteado, n_linhas, n_colunas, tabuleiro)
+            print("Clique -", reps, "|Posição -", numQuadradoSorteado, "|Quadrado-", quadradoSorteado)
+            status = ManipulacaoTabuleiro.click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
+            if status == 'interromper':
+                print('Game Over')
+                Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (reps / ((n_linhas * n_colunas) - n_bombas))
+                break
+            if (reps + 1) == ((n_linhas * n_colunas) - n_bombas):
+                vitorias = 1
+                mediaAcertos = mediaAcertos + 1
+        jogos = jogos + 1
+
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+    tempo = 'Tempo de Execucao: ' + str(tempoExecucao) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias + derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(
+        round(tempoExecucao / (vitorias + derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(
+        round((mediaAcertos / (vitorias + derrotas)) * 100, 2)) + '%\n'
+    return tempo + rodadas + tempoMedioRodada + qtdVitorias + qtdDerrotas + acertosMedios
+
+
+def rotinaRegrasBasicasLog(n_linhas, n_colunas, n_bombas):
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+    end_time = time.time() + tempoExecucao
+    while time.time() < end_time:
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        resultado = "continuar"
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+            if resultado == "continuar":
+
+                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule11) != 0:
+                    r = 0
+                    while r <= len(rule11) - 1:
+                        ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule12) != 0:
+                    r = 0
+                    while r <= len(rule12)-1:
+                        ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule121) != 0:
+                    r = 0
+                    while r <= len(rule121) - 1:
+                        ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule131) != 0:
+                    r = 0
+                    while r <= len(rule131) - 1:
+                        ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule1221) != 0:
+                    r = 0
+                    while r <= len(rule1221) - 1:
+                        ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+                    mediaAcertos = mediaAcertos + 1
+
+            else:
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (
+                            ((n_linhas * n_colunas) - n_bombas - reps) / ((n_linhas * n_colunas) - n_bombas))
+
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+    tempo = 'Tempo de Execucao: ' + str(tempoExecucao) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias + derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(
+        round(tempoExecucao / (vitorias + derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(
+        round((mediaAcertos / (vitorias + derrotas)) * 100, 2)) + '%\n'
+    return tempo + rodadas + tempoMedioRodada + qtdVitorias + qtdDerrotas + acertosMedios
+
+
+
+def rotinaRegrasBasicasProbabilidadeLog(n_linhas, n_colunas, n_bombas):
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+    end_time = time.time() + tempoExecucao
+    while time.time() < end_time:
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        resultado = simularClickAleatorio(5, 5, tabuleiro)
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            probabilidades = RegraProbabilidade.listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro)
+            resultado = RegraProbabilidade.simularClickProbabilistico(n_linhas, n_colunas, tabuleiro, probabilidades)
+            if resultado == "continuar":
+
+                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule11) != 0:
+                    r = 0
+                    while r <= len(rule11) - 1:
+                        ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule12) != 0:
+                    r = 0
+                    while r <= len(rule12)-1:
+                        ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule121) != 0:
+                    r = 0
+                    while r <= len(rule121) - 1:
+                        ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule131) != 0:
+                    r = 0
+                    while r <= len(rule131) - 1:
+                        ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                if len(rule1221) != 0:
+                    r = 0
+                    while r <= len(rule1221) - 1:
+                        ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                        r = r + 1
+
+                reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+                    mediaAcertos = mediaAcertos + 1
+            else:
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (((n_linhas * n_colunas) - n_bombas-reps) / ((n_linhas * n_colunas) - n_bombas))
+
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+    tempo = 'Tempo de Execucao: ' + str(tempoExecucao) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias+derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(round(tempoExecucao/(vitorias+derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(round((mediaAcertos/(vitorias+derrotas)) * 100, 2)) + '%\n'
+    return tempo+rodadas+tempoMedioRodada+qtdVitorias+qtdDerrotas+acertosMedios
+
+
+def testeGeral():
+    if qtdLinhasTabela <= 9 and qtdColunasTabela <= 9 and qtdBombas <= 10:
+        nivel = 'Iniciante'
+    if qtdLinhasTabela <= 16 and qtdColunasTabela <= 16 and qtdBombas <= 40:
+        nivel = 'Intermediario'
+    if qtdLinhasTabela <= 30 and qtdColunasTabela <= 16 and qtdBombas <= 99:
+        nivel = 'Avancado'
+    resutadoForcaBruta = forcaBrutaLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+    resultadoRegrasBasicasForcaBruta = rotinaRegrasBasicasLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+    resultadoRegrasBasicasProbabilidade = rotinaRegrasBasicasProbabilidadeLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+    infosGerais = 'Tabuleiro: ' + str(qtdLinhasTabela) + ' x ' + str(qtdColunasTabela) + '\nNumero de Bombas ' + str(qtdBombas)
+    arquivo = open('LogResultados.txt', 'w', encoding="cp1252")
+    arquivo.write(infosGerais)
+    arquivo.write('\n\n')
+    arquivo.write('Resultado Forca Bruta \n')
+    arquivo.write(resutadoForcaBruta)
+    arquivo.write('\n')
+    arquivo.write('Resultado Regras Basicas + Forca Bruta \n')
+    arquivo.write(resultadoRegrasBasicasForcaBruta)
+    arquivo.write('\n')
+    arquivo.write('Resultado Regras Basicas + Probabilidade nos clicks \n')
+    arquivo.write(resultadoRegrasBasicasProbabilidade)
+    arquivo.close()
 
 # ---------------------------------------------------------------------------------------------------
 # ---------------------------------- ROTINAS DE RESOLUÇÃO (FIM) -----------------------------------------
@@ -227,6 +454,11 @@ def rotinaRegrasBasicasProbabilidade(n_linhas, n_colunas, n_bombas):
 #forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
 #rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 #rotinaRegrasBasicasProbabilidade(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+#forcaBrutaLog(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
+#rotinaRegrasBasicasLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+#rotinaRegrasBasicasProbabilidadeLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+testeGeral()
+
 
 # ---------------------------------------------------------------------------------------------------
 # ---------------------------------- START ROTINAS (FIM) --------------------------------------------

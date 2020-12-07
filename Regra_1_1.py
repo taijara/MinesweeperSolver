@@ -47,17 +47,17 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                     B = dicionarioQuadradosValor[d - n_colunas - 1]
                 if (dicionarioQuadradosLocal[d][0] - 1) >= 0:
                     C = dicionarioQuadradosValor[d - n_colunas]
+                if (dicionarioQuadradosLocal[d][0] - 1) >= 0 and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     D = dicionarioQuadradosValor[d - n_colunas + 1]
-                if (dicionarioQuadradosLocal[d][0] - 1) >= 0 and (dicionarioQuadradosLocal[d][1] + 2) <= (
-                        n_colunas - 1):
+                if (dicionarioQuadradosLocal[d][0] - 1) >= 0 and (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     E = dicionarioQuadradosValor[d - n_colunas + 2]
                 if (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     F = dicionarioQuadradosValor[d + 2]
-                if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 2) <= (
-                        n_colunas - 1):
+                if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     G = dicionarioQuadradosValor[d + n_colunas + 2]
-                if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1):
+                if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     H = dicionarioQuadradosValor[d + n_colunas + 1]
+                if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1):
                     I = dicionarioQuadradosValor[d + n_colunas]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     J = dicionarioQuadradosValor[d + n_colunas - 1]
@@ -130,14 +130,12 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
                     E = dicionarioQuadradosValor[d + 1]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     F = dicionarioQuadradosValor[d + n_colunas + 1]
-
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     G = dicionarioQuadradosValor[d + (2 * n_colunas) + 1]
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1):
                     H = dicionarioQuadradosValor[d + (2 * n_colunas)]
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     I = dicionarioQuadradosValor[d + (2 * n_colunas) - 1]
-
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     J = dicionarioQuadradosValor[d + n_colunas - 1]
                 print(d)
