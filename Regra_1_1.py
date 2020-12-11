@@ -27,17 +27,17 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
     dicionarioQuadradosValor = listarQuadradosValor(n_linhas, n_colunas, tabuleiro)
     ocorrencia = []
     d = 1
-    A = []
-    B = []
-    C = []
-    D = []
-    E = []
-    F = []
-    G = []
-    H = []
-    I = []
-    J = []
     while d < len(dicionarioQuadradosValor):
+        A = []
+        B = []
+        C = []
+        D = []
+        E = []
+        F = []
+        G = []
+        H = []
+        I = []
+        J = []
         if dicionarioQuadradosLocal[d][0] >= 0 and dicionarioQuadradosLocal[d][0] < n_linhas and \
                 dicionarioQuadradosLocal[d][1] >= 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 1):
             if dicionarioQuadradosValor[d] == [1, 'I'] and dicionarioQuadradosValor[d + 1] == [1, 'I']:
@@ -49,12 +49,14 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                     C = dicionarioQuadradosValor[d - n_colunas]
                 if (dicionarioQuadradosLocal[d][0] - 1) >= 0 and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     D = dicionarioQuadradosValor[d - n_colunas + 1]
+
                 if (dicionarioQuadradosLocal[d][0] - 1) >= 0 and (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     E = dicionarioQuadradosValor[d - n_colunas + 2]
                 if (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     F = dicionarioQuadradosValor[d + 2]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 2) <= (n_colunas - 1):
                     G = dicionarioQuadradosValor[d + n_colunas + 2]
+
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     H = dicionarioQuadradosValor[d + n_colunas + 1]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1):
@@ -130,12 +132,14 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
                     E = dicionarioQuadradosValor[d + 1]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     F = dicionarioQuadradosValor[d + n_colunas + 1]
+
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] + 1) <= (n_colunas - 1):
                     G = dicionarioQuadradosValor[d + (2 * n_colunas) + 1]
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1):
                     H = dicionarioQuadradosValor[d + (2 * n_colunas)]
                 if (dicionarioQuadradosLocal[d][0] + 2) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     I = dicionarioQuadradosValor[d + (2 * n_colunas) - 1]
+
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     J = dicionarioQuadradosValor[d + n_colunas - 1]
                 print(d)
@@ -181,6 +185,7 @@ def regra_1_1(n_linhas, n_colunas, tabuleiro):
     pos1234 = posicao1234(n_linhas, n_colunas, tabuleiro)
     if len(pos1234) != 0:
         ocorrencias = ocorrencias + pos1234
+
     pos5678 = posicao5678(n_linhas, n_colunas, tabuleiro)
     if len(pos5678) != 0:
         ocorrencias = ocorrencias + pos5678

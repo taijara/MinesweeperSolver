@@ -17,6 +17,7 @@ import Regra_1_2_1
 import Regra_1_3_1
 import Regra_1_2_2_1
 import time
+import copy
 
 # ------------------------------------------------
 
@@ -25,7 +26,8 @@ import time
 qtdBombas = 5
 qtdLinhasTabela = 5
 qtdColunasTabela = 5
-tempoExecucao = 300
+tempoExecucao = 0
+qtdTabuleiros = 10000
 nivel = ''
 
 
@@ -67,6 +69,7 @@ def forcaBruta(n_linhas, n_colunas, n_bombas):
 
 
 def simularClickAleatorio(n_linhas, n_colunas, tabuleiro):
+    lista = []
     lista = ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro)
     print('lista quadrados inativos -', lista)
     valido = ''
@@ -279,40 +282,45 @@ def rotinaRegrasBasicasLog(n_linhas, n_colunas, n_bombas):
             resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
             if resultado == "continuar":
 
-                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule11) != 0:
-                    r = 0
-                    while r <= len(rule11) - 1:
-                        ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                parada = True
+                while parada:
+                    rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule11) != 0:
+                        r = 0
+                        while r <= len(rule11) - 1:
+                            ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule12) != 0:
-                    r = 0
-                    while r <= len(rule12)-1:
-                        ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule12) != 0:
+                        r = 0
+                        while r <= len(rule12)-1:
+                            ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule121) != 0:
-                    r = 0
-                    while r <= len(rule121) - 1:
-                        ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121) != 0:
+                        r = 0
+                        while r <= len(rule121) - 1:
+                            ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule131) != 0:
-                    r = 0
-                    while r <= len(rule131) - 1:
-                        ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule131) != 0:
+                        r = 0
+                        while r <= len(rule131) - 1:
+                            ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule1221) != 0:
-                    r = 0
-                    while r <= len(rule1221) - 1:
-                        ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule1221) != 0:
+                        r = 0
+                        while r <= len(rule1221) - 1:
+                            ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(rule1221) == 0:
+                        parada = False
 
                 reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
                 if reps == 0:
@@ -360,40 +368,46 @@ def rotinaRegrasBasicasProbabilidadeLog(n_linhas, n_colunas, n_bombas):
             resultado = RegraProbabilidade.simularClickProbabilistico(n_linhas, n_colunas, tabuleiro, probabilidades)
             if resultado == "continuar":
 
-                rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule11) != 0:
-                    r = 0
-                    while r <= len(rule11) - 1:
-                        ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                parada = True
+                while parada:
+                    rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule11) != 0:
+                        r = 0
+                        while r <= len(rule11) - 1:
+                            ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule12) != 0:
-                    r = 0
-                    while r <= len(rule12)-1:
-                        ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule12) != 0:
+                        r = 0
+                        while r <= len(rule12)-1:
+                            ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule121) != 0:
-                    r = 0
-                    while r <= len(rule121) - 1:
-                        ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121) != 0:
+                        r = 0
+                        while r <= len(rule121) - 1:
+                            ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule131) != 0:
-                    r = 0
-                    while r <= len(rule131) - 1:
-                        ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule131) != 0:
+                        r = 0
+                        while r <= len(rule131) - 1:
+                            ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
 
-                rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
-                if len(rule1221) != 0:
-                    r = 0
-                    while r <= len(rule1221) - 1:
-                        ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
-                        r = r + 1
+                    rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule1221) != 0:
+                        r = 0
+                        while r <= len(rule1221) - 1:
+                            ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(
+                            rule1221) == 0:
+                        parada = False
 
                 reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
                 if reps == 0:
@@ -417,6 +431,237 @@ def rotinaRegrasBasicasProbabilidadeLog(n_linhas, n_colunas, n_bombas):
     return tempo+rodadas+tempoMedioRodada+qtdVitorias+qtdDerrotas+acertosMedios
 
 
+def forcaBrutaLogTab(n_linhas, n_colunas, n_bombas, tabuleiros1):
+    tempoIni = time.time()
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+    i = 0
+    while i < len(tabuleiros1):
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = tabuleiros1[i]
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        for reps in range((n_linhas * n_colunas) - n_bombas):
+            lista = ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro)
+            print(lista)
+            numQuadradoSorteado = random.choice(lista)
+            quadradoSorteado = ManipulacaoTabuleiro.encontrarQuadradoPeloNumero(numQuadradoSorteado, n_linhas, n_colunas, tabuleiro)
+            print("Clique -", reps, "|Posição -", numQuadradoSorteado, "|Quadrado-", quadradoSorteado)
+            status = ManipulacaoTabuleiro.click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
+            if status == 'interromper':
+                print('Game Over')
+                Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (reps / ((n_linhas * n_colunas) - n_bombas))
+                break
+            if (reps + 1) == ((n_linhas * n_colunas) - n_bombas):
+                vitorias = 1
+                mediaAcertos = mediaAcertos + 1
+        jogos = jogos + 1
+        i = i + 1
+
+    tempoFim = time.time()
+
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+    tempo = 'Tempo de Execucao: ' + str(round(tempoFim-tempoIni, 4)) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias + derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(
+        round((tempoFim-tempoIni) / (vitorias + derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(
+        round((mediaAcertos / (vitorias + derrotas)) * 100, 2)) + '%\n'
+    return tempo + rodadas + tempoMedioRodada + qtdVitorias + qtdDerrotas + acertosMedios
+
+
+def rotinaRegrasBasicasLogTab(n_linhas, n_colunas, n_bombas, tabuleiros2):
+    tempoIni = time.time()
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+
+    i = 0
+    while i < len(tabuleiros2):
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        tabuleiro = tabuleiros2[i]
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        resultado = "continuar"
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+            if resultado == "continuar":
+
+                parada = True
+                while parada:
+                    rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule11) != 0:
+                        r = 0
+                        while r <= len(rule11) - 1:
+                            ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule12) != 0:
+                        r = 0
+                        while r <= len(rule12)-1:
+                            ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121) != 0:
+                        r = 0
+                        while r <= len(rule121) - 1:
+                            ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule131) != 0:
+                        r = 0
+                        while r <= len(rule131) - 1:
+                            ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule1221) != 0:
+                        r = 0
+                        while r <= len(rule1221) - 1:
+                            ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(rule1221) == 0:
+                        parada = False
+
+                reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+                    mediaAcertos = mediaAcertos + 1
+
+            else:
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (
+                            ((n_linhas * n_colunas) - n_bombas - reps) / ((n_linhas * n_colunas) - n_bombas))
+        jogos = jogos + 1
+        i = i + 1
+
+    tempoFim = time.time()
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+    tempo = 'Tempo de Execucao: ' + str(round(tempoFim-tempoIni, 4)) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias + derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(
+        round((tempoFim-tempoIni) / (vitorias + derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(
+        round((mediaAcertos / (vitorias + derrotas)) * 100, 2)) + '%\n'
+    return tempo + rodadas + tempoMedioRodada + qtdVitorias + qtdDerrotas + acertosMedios
+
+
+
+def rotinaRegrasBasicasProbabilidadeLogTab(n_linhas, n_colunas, n_bombas, tabuleiros3):
+    tempoIni = time.time()
+    vitorias = 0
+    derrotas = 0
+    jogos = 1
+    mediaAcertos = 0.00
+    print(tabuleiros3)
+    i = 0
+    while i < len(tabuleiros3):
+        print('Jogo', jogos)
+        print('Placar')
+        print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+        print(i)
+        tabuleiro = tabuleiros3[i]
+        Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+        resultado = "continuar"
+        reps = 1
+        while resultado == "continuar" and reps !=0:
+            if reps == 1:
+                resultado = simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
+            else:
+                probabilidades = RegraProbabilidade.listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro)
+                resultado = RegraProbabilidade.simularClickProbabilistico(n_linhas, n_colunas, tabuleiro, probabilidades)
+
+            if resultado == "continuar":
+
+                parada = True
+                while parada:
+                    rule11 = Regra_1_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule11) != 0:
+                        r = 0
+                        while r <= len(rule11) - 1:
+                            ManipulacaoTabuleiro.click(rule11[r][0], rule11[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule12 = Regra_1_2.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule12) != 0:
+                        r = 0
+                        while r <= len(rule12)-1:
+                            ManipulacaoTabuleiro.click(rule12[r][0], rule12[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule121 = Regra_1_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121) != 0:
+                        r = 0
+                        while r <= len(rule121) - 1:
+                            ManipulacaoTabuleiro.click(rule121[r][0], rule121[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule131 = Regra_1_3_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule131) != 0:
+                        r = 0
+                        while r <= len(rule131) - 1:
+                            ManipulacaoTabuleiro.click(rule131[r][0], rule131[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule1221 = Regra_1_2_2_1.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule1221) != 0:
+                        r = 0
+                        while r <= len(rule1221) - 1:
+                            ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(
+                            rule1221) == 0:
+                        parada = False
+
+                reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
+                if reps == 0:
+                    vitorias = vitorias + 1
+                    mediaAcertos = mediaAcertos + 1
+            else:
+                derrotas = derrotas + 1
+                mediaAcertos = mediaAcertos + (((n_linhas * n_colunas) - n_bombas-reps) / ((n_linhas * n_colunas) - n_bombas))
+        jogos = jogos + 1
+        i = i + 1
+
+    tempoFim = time.time()
+    print('Jogo', jogos)
+    print('Placar')
+    print('Vitorias', vitorias, "x", derrotas, 'Derrotas')
+    Tabuleiro.imprimirTabuleiro(qtdLinhasTabela, tabuleiro)
+
+    tempo = 'Tempo de Execucao: ' + str(round(tempoFim-tempoIni, 4)) + ' segundos\n'
+    rodadas = 'Rodadas: ' + str((vitorias+derrotas)) + '\n'
+    tempoMedioRodada = 'Tempo Medio por Rodada: ' + str(round((tempoFim-tempoIni)/(vitorias+derrotas), 4)) + ' milisegundos\n'
+    qtdVitorias = 'Quantidade de Vitorias: ' + str(vitorias) + '\n'
+    qtdDerrotas = 'Quantidade de Derrotas: ' + str(derrotas) + '\n'
+    acertosMedios = 'Media de Acertos por Rodadas:' + str(round((mediaAcertos/(vitorias+derrotas)) * 100, 2)) + '%\n'
+    return tempo+rodadas+tempoMedioRodada+qtdVitorias+qtdDerrotas+acertosMedios
+
+
 def testeGeral():
     if qtdLinhasTabela <= 9 and qtdColunasTabela <= 9 and qtdBombas <= 10:
         nivel = 'Iniciante'
@@ -424,9 +669,26 @@ def testeGeral():
         nivel = 'Intermediario'
     if qtdLinhasTabela <= 30 and qtdColunasTabela <= 16 and qtdBombas <= 99:
         nivel = 'Avancado'
-    resutadoForcaBruta = forcaBrutaLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-    resultadoRegrasBasicasForcaBruta = rotinaRegrasBasicasLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-    resultadoRegrasBasicasProbabilidade = rotinaRegrasBasicasProbabilidadeLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
+
+    tabuleiros = []
+    tabuleiros1 = []
+    tabuleiros2 = []
+    tabuleiros3 = []
+    i = 0
+    while i < qtdTabuleiros:
+        tabuleiros.append(Tabuleiro.montarTabuleiroCompleto(qtdLinhasTabela, qtdColunasTabela, qtdBombas))
+        i = i + 1
+
+    tabuleiros1 = copy.deepcopy(tabuleiros)
+    tabuleiros2 = copy.deepcopy(tabuleiros)
+    tabuleiros3 = copy.deepcopy(tabuleiros)
+
+
+    resutadoForcaBruta = forcaBrutaLogTab(qtdLinhasTabela, qtdColunasTabela, qtdBombas, tabuleiros1)
+    resultadoRegrasBasicasForcaBruta = rotinaRegrasBasicasLogTab(qtdLinhasTabela, qtdColunasTabela, qtdBombas, tabuleiros2)
+    resultadoRegrasBasicasProbabilidade = rotinaRegrasBasicasProbabilidadeLogTab(qtdLinhasTabela, qtdColunasTabela,
+                                                                                 qtdBombas, tabuleiros3)
+
     infosGerais = 'Tabuleiro: ' + str(qtdLinhasTabela) + ' x ' + str(qtdColunasTabela) + '\nNumero de Bombas ' + str(qtdBombas)
     arquivo = open('LogResultados.txt', 'w', encoding="cp1252")
     arquivo.write(infosGerais)

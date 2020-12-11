@@ -2,25 +2,25 @@ Tabuleiro: 5 x 5
 Numero de Bombas 5
 
 Resultado Forca Bruta 
-Tempo de Execucao: 300 segundos
-Rodadas: 504448
+Tempo de Execucao: 5.8362 segundos
+Rodadas: 10000
 Tempo Medio por Rodada: 0.0006 milisegundos
-Quantidade de Vitorias: 1
-Quantidade de Derrotas: 504447
-Media de Acertos por Rodadas:14.71%
+Quantidade de Vitorias: 0
+Quantidade de Derrotas: 10000
+Media de Acertos por Rodadas:14.78%
 
 Resultado Regras Basicas + Forca Bruta 
-Tempo de Execucao: 300 segundos
-Rodadas: 104152
-Tempo Medio por Rodada: 0.0029 milisegundos
+Tempo de Execucao: 28.0456 segundos
+Rodadas: 10000
+Tempo Medio por Rodada: 0.0028 milisegundos
 Quantidade de Vitorias: 0
-Quantidade de Derrotas: 104152
-Media de Acertos por Rodadas:26.78%
+Quantidade de Derrotas: 10000
+Media de Acertos por Rodadas:27.0%
 
 Resultado Regras Basicas + Probabilidade nos clicks 
-Tempo de Execucao: 300 segundos
-Rodadas: 56332
-Tempo Medio por Rodada: 0.0053 milisegundos
-Quantidade de Vitorias: 1
-Quantidade de Derrotas: 56331
-Media de Acertos por Rodadas:45.22%
+Tempo de Execucao: 45.3074 segundos
+Rodadas: 10000
+Tempo Medio por Rodada: 0.0045 milisegundos
+Quantidade de Vitorias: 5
+Quantidade de Derrotas: 9995
+Media de Acertos por Rodadas:47.24%

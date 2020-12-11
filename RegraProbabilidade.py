@@ -168,7 +168,7 @@ def simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob):
         menorNumero = min(numero for numero in prob if numero != 0)
         indiceDoMenorNumero = prob.index(menorNumero)
         status = ManipulacaoTabuleiro.click(listaLocal[indiceDoMenorNumero][0], listaLocal[indiceDoMenorNumero][1], tabuleiro, n_linhas, n_colunas)
-
+    print("este aqui eh o status ---------------------------------------->",status)
     return status
 
 """
