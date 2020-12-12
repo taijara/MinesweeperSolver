@@ -62,14 +62,37 @@ def somaQuadradosAtivos(n_linhas, n_colunas, tabuleiro, listaStatus, listaValor)
         l = l + 1
     return soma
 
+def qtdQuadradosVizinhos(n_linhas, n_colunas):
+    qtd = 0
+    for i in range(n_linhas):
+        for j in range(n_colunas):
+            if (j - 1) >= 0:
+                qtd = qtd + 1
+            if (j + 1) <= n_colunas - 1:
+                qtd = qtd + 1
+            if i - 1 >= 0:
+                qtd = qtd + 1
+            if i + 1 <= n_linhas - 1:
+                qtd = qtd + 1
+            if i - 1 >= 0 and (j - 1) >= 0:
+                qtd = qtd + 1
+            if i + 1 <= n_linhas - 1 and (j + 1) <= n_colunas - 1:
+                qtd = qtd + 1
+            if i - 1 >= 0 and (j + 1) <= n_colunas - 1:
+                qtd = qtd + 1
+            if i + 1 <= n_linhas - 1 and (j - 1) >= 0:
+                qtd = qtd + 1
+    return qtd
 
-def qtdQuadradosAtivos(n_linhas, n_colunas, tabuleiro, listaStatus, listaValor):
+
+def qtdQuadradosAtivos(n_linhas, n_colunas, tabuleiro, listaStatus, listaValor, listaLocal):
     qtd = 0
     l = 0
     while l < len(listaStatus):
         if listaStatus[l] == 'A':
             qtd = qtd + 1
         l = l + 1
+    qtd = qtd + qtdQuadradosVizinhos(n_linhas, n_colunas)
     return qtd
 
 
@@ -128,7 +151,7 @@ def listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro):
                     probabilidade = 0.0
                 else:
                     somaQA = somaQuadradosAtivos(n_linhas, n_colunas, tabuleiro, dicionarioQuadradosStatus, dicionarioQuadradosValor)
-                    qtdQA = qtdQuadradosAtivos(n_linhas, n_colunas, tabuleiro, dicionarioQuadradosStatus, dicionarioQuadradosValor)
+                    qtdQA = qtdQuadradosAtivos(n_linhas, n_colunas, tabuleiro, dicionarioQuadradosStatus, dicionarioQuadradosValor, dicionarioQuadradosLocal)
                     probabilidade = round((n_bombas - somaQA)/((n_linhas * n_colunas)-qtdQA), 2)
                 listaProbabilidades.append(probabilidade)
             contador = contador + 1
@@ -167,8 +190,11 @@ def simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob):
     if flag == 0:
         menorNumero = min(numero for numero in prob if numero != 0)
         indiceDoMenorNumero = prob.index(menorNumero)
-        status = ManipulacaoTabuleiro.click(listaLocal[indiceDoMenorNumero][0], listaLocal[indiceDoMenorNumero][1], tabuleiro, n_linhas, n_colunas)
-    print("este aqui eh o status ---------------------------------------->",status)
+        if tabuleiro[listaLocal[indiceDoMenorNumero][0]][listaLocal[indiceDoMenorNumero][1]] == 'F':
+            simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob)
+        else:
+            status = ManipulacaoTabuleiro.click(listaLocal[indiceDoMenorNumero][0], listaLocal[indiceDoMenorNumero][1], tabuleiro, n_linhas, n_colunas)
+    print("este aqui eh o status ---------------------------------------->", status)
     return status
 
 """
