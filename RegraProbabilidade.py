@@ -161,7 +161,7 @@ def listarQuadradosProbabilidade(n_linhas, n_colunas, n_bombas, tabuleiro):
 
 def simularClickAleatorio(n_linhas, n_colunas, tabuleiro):
     lista = ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro)
-    print('lista quadrados inativos -', lista)
+    # print('lista quadrados inativos -', lista)
     valido = ''
     resultado = "continuar"
     numQuadradoSorteado = random.choice(lista)
@@ -169,11 +169,11 @@ def simularClickAleatorio(n_linhas, n_colunas, tabuleiro):
     if tabuleiro[quadradoSorteado[0]][quadradoSorteado[1]][1] == 'F':
         simularClickAleatorio(n_linhas, n_colunas, tabuleiro)
     else:
-        print('quadrado clicado -', quadradoSorteado)
+        # print('quadrado clicado -', quadradoSorteado)
         status = ManipulacaoTabuleiro.click(quadradoSorteado[0], quadradoSorteado[1], tabuleiro, n_linhas, n_colunas)
         if status == 'interromper':
             resultado = "Game Over"
-            print(resultado)
+            # print(resultado)
     return resultado
 
 
@@ -194,7 +194,7 @@ def simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob):
             simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob)
         else:
             status = ManipulacaoTabuleiro.click(listaLocal[indiceDoMenorNumero][0], listaLocal[indiceDoMenorNumero][1], tabuleiro, n_linhas, n_colunas)
-    print("este aqui eh o status ---------------------------------------->", status)
+    # print("este aqui eh o status ---------------------------------------->", status)
     return status
 
 """

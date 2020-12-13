@@ -36,7 +36,7 @@ def listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas):
 
 # --------- Função para Virar Quadrados Vizinhos --------------
 def virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas):
-    print('teste inicio funcao -')
+    # print('teste inicio funcao -')
     qVizinhos = listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas)
     # print('quadrados vizinhos',qVizinhos)
     listaVirar = [(0, 0)]
@@ -152,8 +152,8 @@ def colocarFlag(tabuleiro, i, j):
 def click(linha, coluna, tabuleiro, n_linhas, n_colunas):
     virarQuadrado(linha, coluna, tabuleiro)
     resultado = validarQuadrado(linha, coluna, tabuleiro)
-    print(tabuleiro[linha][coluna])
-    print(tabuleiro[linha][coluna][0])
+    # print(tabuleiro[linha][coluna])
+    # print(tabuleiro[linha][coluna][0])
     if (resultado == 'ok'):
         #if (tabuleiro[linha][coluna][1] == 'A' and tabuleiro[linha][coluna][0] == 0):
         virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas)

@@ -63,15 +63,15 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                     I = dicionarioQuadradosValor[d + n_colunas]
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     J = dicionarioQuadradosValor[d + n_colunas - 1]
-                print(d)
-                print("vizinhos :", A, B, C, D, E, F, G, H, I, J)
+                # print(d)
+                # print("vizinhos :", A, B, C, D, E, F, G, H, I, J)
 
                 if (B != [] and B[1] == 'I') and (C != [] and C[1] == 'I') and (D != [] and D[1] == 'I'):
                     if (E == [] or E[1] == 'A') and (F == [] or F[1] == 'A') and \
                             (G == [] or G[1] == 'A') and (H == [] or H[1] == 'A') and \
                             (I == [] or I[1] == 'A') and (J == [] or J[1] == 'A') and \
                             (A == [] or A[1] == 'A'):
-                        print("encontrei a posição 1 da regra 1_1")
+                        # print("encontrei a posição 1 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
 
                 if (C != [] and C[1] == 'I') and (D != [] and D[1] == 'I') and (E != [] and E[1] == 'I'):
@@ -79,7 +79,7 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                             (H == [] or H[1] == 'A') and (I == [] or I[1] == 'A') and \
                             (J == [] or J[1] == 'A') and (A == [] or A[1] == 'A') and \
                             (B == [] or B[1] == 'A'):
-                        print("encontrei a posição 2 da regra 1_1")
+                        # print("encontrei a posição 2 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 2])
 
                 if (J != [] and J[1] == 'I') and (I != [] and I[1] == 'I') and (H != [] and H[1] == 'I'):
@@ -87,7 +87,7 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                             (D == [] or D[1] == 'A') and (C == [] or C[1] == 'A') and \
                             (B == [] or B[1] == 'A') and (A == [] or A[1] == 'A') and \
                             (E == [] or E[1] == 'A'):
-                        print("encontrei a posição 3 da regra 1_1")
+                        # print("encontrei a posição 3 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
 
                 if (G != [] and G[1] == 'I') and (I != [] and I[1] == 'I') and (H != [] and H[1] == 'I'):
@@ -95,7 +95,7 @@ def posicao1234(n_linhas, n_colunas, tabuleiro):
                             (D == [] or D[1] == 'A') and (C == [] or C[1] == 'A') and \
                             (B == [] or B[1] == 'A') and (A == [] or A[1] == 'A') and \
                             (E == [] or E[1] == 'A'):
-                        print("encontrei a posição 4 da regra 1_1")
+                        # print("encontrei a posição 4 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 2])
         d = d + 1
     return ocorrencia
@@ -142,15 +142,15 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
 
                 if (dicionarioQuadradosLocal[d][0] + 1) <= (n_linhas - 1) and (dicionarioQuadradosLocal[d][1] - 1) >= 0:
                     J = dicionarioQuadradosValor[d + n_colunas - 1]
-                print(d)
-                print("vizinhos :", A, B, C, D, E, F, G, H, I, J)
+                # print(d)
+                # print("vizinhos :", A, B, C, D, E, F, G, H, I, J)
 
                 if (B != [] and B[1] == 'I') and (A != [] and A[1] == 'I') and (J != [] and J[1] == 'I'):
                     if (E == [] or E[1] == 'A') and (F == [] or F[1] == 'A') and \
                             (G == [] or G[1] == 'A') and (H == [] or H[1] == 'A') and \
                             (I == [] or I[1] == 'A') and (D == [] or D[1] == 'A') and \
                             (C == [] or C[1] == 'A'):
-                        print("encontrei a posição 1 da regra 1_1")
+                        # print("encontrei a posição 1 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
 
                 if (F != [] and F[1] == 'I') and (D != [] and D[1] == 'I') and (E != [] and E[1] == 'I'):
@@ -158,7 +158,7 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
                             (H == [] or H[1] == 'A') and (I == [] or I[1] == 'A') and \
                             (J == [] or J[1] == 'A') and (A == [] or A[1] == 'A') and \
                             (B == [] or B[1] == 'A'):
-                        print("encontrei a posição 2 da regra 1_1")
+                        # print("encontrei a posição 2 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
 
                 if (E != [] and E[1] == 'I') and (F != [] and F[1] == 'I') and (G != [] and G[1] == 'I'):
@@ -166,7 +166,7 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
                             (D == [] or D[1] == 'A') and (C == [] or C[1] == 'A') and \
                             (B == [] or B[1] == 'A') and (A == [] or A[1] == 'A') and \
                             (J == [] or J[1] == 'A'):
-                        print("encontrei a posição 3 da regra 1_1")
+                        # print("encontrei a posição 3 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d + (2 * n_colunas) + 1])
 
                 if (J != [] and J[1] == 'I') and (I != [] and I[1] == 'I') and (A != [] and A[1] == 'I'):
@@ -174,7 +174,7 @@ def posicao5678(n_linhas, n_colunas, tabuleiro):
                             (D == [] or D[1] == 'A') and (C == [] or C[1] == 'A') and \
                             (B == [] or B[1] == 'A') and (H == [] or H[1] == 'A') and \
                             (E == [] or E[1] == 'A'):
-                        print("encontrei a posição 4 da regra 1_1")
+                        # print("encontrei a posição 4 da regra 1_1")
                         ocorrencia.append(dicionarioQuadradosLocal[d + (2 * n_colunas) - 1])
         d = d + 1
     return ocorrencia
@@ -189,7 +189,7 @@ def regra_1_1(n_linhas, n_colunas, tabuleiro):
     pos5678 = posicao5678(n_linhas, n_colunas, tabuleiro)
     if len(pos5678) != 0:
         ocorrencias = ocorrencias + pos5678
-    print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
+    # print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
     return ocorrencias
 
 

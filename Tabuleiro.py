@@ -33,7 +33,7 @@ def crie_matriz(n_linhas, n_colunas, valor, status):
 def sortearBombas(A, n_linhas, n_colunas, qtdBombas):
     bombas = random.sample(range(0, (n_linhas * n_colunas - 1)), qtdBombas)
     valor = 0
-    print("Lista das Bombas - ", bombas)
+    # print("Lista das Bombas - ", bombas)
     for i in range(n_linhas):
         for j in range(n_colunas):
             if (valor in bombas):

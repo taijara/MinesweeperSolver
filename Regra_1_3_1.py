@@ -157,7 +157,7 @@ def regra_1_3_1(n_linhas, n_colunas, tabuleiro):
     pos4 = posicao_4(n_linhas, n_colunas, tabuleiro)
     if len(pos4) != 0:
         ocorrencias = ocorrencias + pos4
-    print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
+    # print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
     return ocorrencias
 
 

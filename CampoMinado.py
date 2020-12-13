@@ -16,6 +16,11 @@ import Regra_1_2
 import Regra_1_2_1
 import Regra_1_3_1
 import Regra_1_2_2_1
+import Regra_1_4_Combo
+import Regra_2_5_Combo
+import Regra_3_6_Combo
+import Regra_1_3_2_Combo
+import Regra_1_2_1_Combo
 import time
 import copy
 
@@ -23,11 +28,11 @@ import copy
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 5
-qtdLinhasTabela = 5
-qtdColunasTabela = 5
+qtdBombas = 3
+qtdLinhasTabela = 4
+qtdColunasTabela = 4
 tempoExecucao = 0
-qtdTabuleiros = 10000
+qtdTabuleiros = 1000
 nivel = ''
 
 
@@ -537,7 +542,47 @@ def rotinaRegrasBasicasLogTab(n_linhas, n_colunas, n_bombas, tabuleiros2):
                             ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
                             r = r + 1
 
-                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(rule1221) == 0:
+                    rule14Combo = Regra_1_4_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule14Combo) != 0:
+                        r = 0
+                        while r <= len(rule14Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule14Combo[r][0], rule14Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule25Combo = Regra_2_5_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule25Combo) != 0:
+                        r = 0
+                        while r <= len(rule25Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule25Combo[r][0], rule25Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule36Combo = Regra_3_6_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule36Combo) != 0:
+                        r = 0
+                        while r <= len(rule36Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule36Combo[r][0], rule36Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule121Combo = Regra_1_2_1_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121Combo) != 0:
+                        r = 0
+                        while r <= len(rule121Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule121Combo[r][0], rule121Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule132Combo = Regra_1_3_2_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule132Combo) != 0:
+                        r = 0
+                        while r <= len(rule132Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule132Combo[r][0], rule132Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(rule1221) == 0 and len(rule14Combo) == 0 and len(rule25Combo) == 0 and len(rule36Combo) == 0 and len(rule121Combo) == 0 and len(rule132Combo) == 0:
                         parada = False
 
                 reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
@@ -548,7 +593,7 @@ def rotinaRegrasBasicasLogTab(n_linhas, n_colunas, n_bombas, tabuleiros2):
             else:
                 derrotas = derrotas + 1
                 mediaAcertos = mediaAcertos + (
-                            ((n_linhas * n_colunas) - n_bombas - reps) / ((n_linhas * n_colunas) - n_bombas))
+                            ((n_linhas * n_colunas) - reps) / ((n_linhas * n_colunas)))
         jogos = jogos + 1
         i = i + 1
 
@@ -633,8 +678,48 @@ def rotinaRegrasBasicasProbabilidadeLogTab(n_linhas, n_colunas, n_bombas, tabule
                             ManipulacaoTabuleiro.click(rule1221[r][0], rule1221[r][1], tabuleiro, n_linhas, n_colunas)
                             r = r + 1
 
+                    rule14Combo = Regra_1_4_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule14Combo) != 0:
+                        r = 0
+                        while r <= len(rule14Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule14Combo[r][0], rule14Combo[r][1], tabuleiro, n_linhas, n_colunas)
+                            r = r + 1
+
+                    rule25Combo = Regra_2_5_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule25Combo) != 0:
+                        r = 0
+                        while r <= len(rule25Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule25Combo[r][0], rule25Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule36Combo = Regra_3_6_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule36Combo) != 0:
+                        r = 0
+                        while r <= len(rule36Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule36Combo[r][0], rule36Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule121Combo = Regra_1_2_1_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule121Combo) != 0:
+                        r = 0
+                        while r <= len(rule121Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule121Combo[r][0], rule121Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+                    rule132Combo = Regra_1_3_2_Combo.verificarPosicoes(n_linhas, n_colunas, tabuleiro)
+                    if len(rule132Combo) != 0:
+                        r = 0
+                        while r <= len(rule132Combo) - 1:
+                            ManipulacaoTabuleiro.click(rule132Combo[r][0], rule132Combo[r][1], tabuleiro, n_linhas,
+                                                       n_colunas)
+                            r = r + 1
+
+
                     if len(rule11) == 0 and len(rule12) == 0 and len(rule131) == 0 and len(rule121) == 0 and len(
-                            rule1221) == 0:
+                            rule1221) == 0 and len(rule14Combo) == 0 and len(rule25Combo) == 0 and len(rule36Combo) == 0 and len(rule121Combo) == 0 and len(rule132Combo) == 0:
                         parada = False
 
                 reps = len(ManipulacaoTabuleiro.listarQuadradosInativos(n_linhas, n_colunas, tabuleiro))
@@ -643,7 +728,7 @@ def rotinaRegrasBasicasProbabilidadeLogTab(n_linhas, n_colunas, n_bombas, tabule
                     mediaAcertos = mediaAcertos + 1
             else:
                 derrotas = derrotas + 1
-                mediaAcertos = mediaAcertos + (((n_linhas * n_colunas) - n_bombas-reps) / ((n_linhas * n_colunas) - n_bombas))
+                mediaAcertos = mediaAcertos + (((n_linhas * n_colunas) -reps) / ((n_linhas * n_colunas)))
         jogos = jogos + 1
         i = i + 1
 

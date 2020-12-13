@@ -35,21 +35,19 @@ def posicao_1(n_linhas, n_colunas, tabuleiro):
     while d < len(dicionarioQuadradosValor):
         if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 1) and \
                 dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 3):
-            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [2, 'A'] and dicionarioQuadradosValor[d + 2] == [1, 'A'] and \
-                    dicionarioQuadradosValor[d - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + 3][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas + 2][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas + 3][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas][1] == 'I' and\
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [3, 'A'] and dicionarioQuadradosValor[d + 2] == [2, 'A'] and \
+                    dicionarioQuadradosValor[d - n_colunas + 2][1] == 'I' and \
                     dicionarioQuadradosValor[d + n_colunas + 2][1] == 'I':
-                print("achei posição 1 da regra 1_2_1")
-                tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d][1]][1] = 'F'
+                print("achei posição 1 da regra 1_3_2")
+                tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d + 2][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d + 2][1]][1] = 'F'
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 3])
+                ocorrencia.append(dicionarioQuadradosLocal[d + 3])
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 3])
         d = d + 1
     return ocorrencia
@@ -70,32 +68,30 @@ def posicao_2(n_linhas, n_colunas, tabuleiro):
     while d < len(dicionarioQuadradosValor):
         if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 1) and \
                 dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 3):
-            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + 1] == [2, 'A'] and dicionarioQuadradosValor[d + 2] == [1, 'A'] and \
-                    dicionarioQuadradosValor[d - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + 3][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas][1] == 'I' and \
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d - 1] == [3, 'A'] and dicionarioQuadradosValor[d - 2] == [2, 'A'] and \
                     dicionarioQuadradosValor[d - n_colunas + 2][1] == 'I' and \
-                    dicionarioQuadradosValor[d + n_colunas][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas + 2][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas + 3][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas - 1][1] == 'A':
-                print("achei posição 2 da regra 1_2_1")
-                tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d + 2][1]][1] = 'F'
-                tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d][1]][1] = 'F'
+                    dicionarioQuadradosValor[d + n_colunas + 2][1] == 'I':
+                print("achei posição 2 da regra 1_3_2")
+                tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d - 2][1]][1] = 'F'
+                tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d - 2][1]][1] = 'F'
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 3])
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
-                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 3])
+                ocorrencia.append(dicionarioQuadradosLocal[d - 3])
+                ocorrencia.append(dicionarioQuadradosLocal[d + 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 3])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
         d = d + 1
     return ocorrencia
 
 
 """
-x000  ooo0
-x100  o1o0
-x200  o0o0
-x100  0000
-x000
+xxx
+010
+030
+B2B
+xxx
 """
 
 # rotacao 90 posicao 1
@@ -107,32 +103,30 @@ def posicao_3(n_linhas, n_colunas, tabuleiro):
     while d < len(dicionarioQuadradosValor):
         if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 3) and \
                 dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 1):
-            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + n_colunas] == [2, 'A'] and dicionarioQuadradosValor[d + (2 * n_colunas)] == [2, 'A'] and \
-                    dicionarioQuadradosValor[d + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (2 * n_colunas) + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (3 * n_colunas) + 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (3 * n_colunas)][1] == 'A' and \
-                    dicionarioQuadradosValor[d - 1][1] == 'I' and \
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + n_colunas] == [3, 'A'] and dicionarioQuadradosValor[d + (2 * n_colunas)] == [2, 'A'] and \
+                    dicionarioQuadradosValor[d + (2 * n_colunas) + 1][1] == 'I' and \
                     dicionarioQuadradosValor[d + (2 * n_colunas) - 1][1] == 'I':
-                print("achei posição 3 da regra 1_2_1")
-                tabuleiro[dicionarioQuadradosLocal[d][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
+                print("achei posição 3 da regra 1_3_2")
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
+                tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas])
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d + (3 * n_colunas) - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + (3 * n_colunas)])
+                ocorrencia.append(dicionarioQuadradosLocal[d + (3 * n_colunas) + 1])
         d = d + 1
     return ocorrencia
 
 
 """
-000x  ooo0
-001x  o1o0
-002x  o0o0
-001x  0000
-000x
+xxx
+020
+030
+B1B
+xxx
 """
 
 # espelhamento posicao 3
@@ -144,27 +138,25 @@ def posicao_4(n_linhas, n_colunas, tabuleiro):
     while d < len(dicionarioQuadradosValor):
         if dicionarioQuadradosLocal[d][0] > 0 and dicionarioQuadradosLocal[d][0] < (n_linhas - 3) and \
                 dicionarioQuadradosLocal[d][1] > 0 and dicionarioQuadradosLocal[d][1] < (n_colunas - 1):
-            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d + n_colunas] == [2, 'A'] and dicionarioQuadradosValor[d + (2 * n_colunas)] == [2, 'A'] and \
-                    dicionarioQuadradosValor[d - n_colunas][1] == 'A' and \
-                    dicionarioQuadradosValor[d - n_colunas - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + n_colunas - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (2 * n_colunas) - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (3 * n_colunas) - 1][1] == 'A' and \
-                    dicionarioQuadradosValor[d + (3 * n_colunas)][1] == 'A' and \
-                    dicionarioQuadradosValor[d + 1][1] == 'I' and \
-                    dicionarioQuadradosValor[d + (2 * n_colunas) + 1][1] == 'I':
-                print("achei posição 4 da regra 1_2_1")
-                tabuleiro[dicionarioQuadradosLocal[d][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
-                tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
+            if dicionarioQuadradosValor[d] == [1, 'A'] and dicionarioQuadradosValor[d - n_colunas] == [3, 'A'] and dicionarioQuadradosValor[d + (2 * n_colunas)] == [2, 'A'] and \
+                    dicionarioQuadradosValor[d - (2 * n_colunas) + 1][1] == 'I' and \
+                    dicionarioQuadradosValor[d - (2 * n_colunas) - 1][1] == 'I':
+                print("achei posição 4 da regra 1_3_2")
+                tabuleiro[dicionarioQuadradosLocal[d - (2 * n_colunas)][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
+                tabuleiro[dicionarioQuadradosLocal[d - (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
+                ocorrencia.append(dicionarioQuadradosLocal[d - (3 * n_colunas) - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - (3 * n_colunas)])
+                ocorrencia.append(dicionarioQuadradosLocal[d - (3 * n_colunas) + 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
+                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas])
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
-                ocorrencia.append(dicionarioQuadradosLocal[d + (3 * n_colunas) + 1])
         d = d + 1
     return ocorrencia
 
 
-def regra_1_2_1(n_linhas, n_colunas, tabuleiro):
+def regra_1_3_2_combo(n_linhas, n_colunas, tabuleiro):
     ocorrencias = []
     pos1 = posicao_1(n_linhas, n_colunas, tabuleiro)
     if len(pos1) != 0:
@@ -186,7 +178,7 @@ def regra_1_2_1(n_linhas, n_colunas, tabuleiro):
 def verificarPosicoes(n_linhas, n_colunas, tabuleiro):
     dicionarioQuadradosLocal = listarQuadradosLocal(n_linhas, n_colunas, tabuleiro)
     dicionarioQuadradosValor = listarQuadradosValor(n_linhas, n_colunas, tabuleiro)
-    ocorrencias = regra_1_2_1(n_linhas, n_colunas, tabuleiro)
+    ocorrencias = regra_1_3_2_combo(n_linhas, n_colunas, tabuleiro)
     return ocorrencias
 
 """ 

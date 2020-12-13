@@ -46,7 +46,7 @@ def posicao_1(n_linhas, n_colunas, tabuleiro):
                     dicionarioQuadradosValor[d - n_colunas - 1][1] == 'A' and \
                     dicionarioQuadradosValor[d + n_colunas + 1][1] == 'I' and\
                     dicionarioQuadradosValor[d + n_colunas + 2][1] == 'I':
-                print("achei posição 1 da regra 1_2_1")
+                # print("achei posição 1 da regra 1_2_1")
                 tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d + 2][1]][1] = 'F'
                 ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
@@ -83,7 +83,7 @@ def posicao_2(n_linhas, n_colunas, tabuleiro):
                     dicionarioQuadradosValor[d + n_colunas + 4][1] == 'A' and \
                     dicionarioQuadradosValor[d - n_colunas + 1][1] == 'I' and \
                     dicionarioQuadradosValor[d - n_colunas + 2][1] == 'I':
-                print("achei posição 2 da regra 1_2_1")
+                # print("achei posição 2 da regra 1_2_1")
                 tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d - n_colunas][0]][dicionarioQuadradosLocal[d + 2][1]][1] = 'F'
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
@@ -123,7 +123,7 @@ def posicao_3(n_linhas, n_colunas, tabuleiro):
                     dicionarioQuadradosValor[d + (4 * n_colunas)][1] == 'A' and \
                     dicionarioQuadradosValor[d + n_colunas - 1][1] == 'I' and \
                     dicionarioQuadradosValor[d + (2 * n_colunas) - 1][1] == 'I':
-                print("achei posição 3 da regra 1_2_1")
+                # print("achei posição 3 da regra 1_2_1")
                 tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
@@ -163,7 +163,7 @@ def posicao_4(n_linhas, n_colunas, tabuleiro):
                     dicionarioQuadradosValor[d + (4 * n_colunas)][1] == 'A' and \
                     dicionarioQuadradosValor[d + n_colunas + 1][1] == 'I' and \
                     dicionarioQuadradosValor[d + (2 * n_colunas) + 1][1] == 'I':
-                print("achei posição 4 da regra 1_2_1")
+                # print("achei posição 4 da regra 1_2_1")
                 tabuleiro[dicionarioQuadradosLocal[d + n_colunas][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
                 ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
@@ -188,7 +188,7 @@ def regra_1_2_2_1(n_linhas, n_colunas, tabuleiro):
     pos4 = posicao_4(n_linhas, n_colunas, tabuleiro)
     if len(pos4) != 0:
         ocorrencias = ocorrencias + pos4
-    print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
+    # print("ocorrencias ------------------------------------------------------------------------------------------------------------->", ocorrencias)
     return ocorrencias
 
 
