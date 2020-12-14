@@ -28,11 +28,11 @@ import copy
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 3
-qtdLinhasTabela = 9
-qtdColunasTabela = 9
+qtdBombas = 1
+qtdLinhasTabela = 5
+qtdColunasTabela = 5
 tempoExecucao = 0
-qtdTabuleiros = 1000
+qtdTabuleiros = 10000
 nivel = ''
 
 
@@ -871,13 +871,13 @@ def testeTabuleirosDiferentes():
 # ---------------------------------- START ROTINAS (INICIO) -----------------------------------------
 # ---------------------------------------------------------------------------------------------------
 
-#forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
+forcaBruta(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
 #rotinaRegrasBasicas(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 #rotinaRegrasBasicasProbabilidade(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 #forcaBrutaLog(qtdLinhasTabela,qtdColunasTabela,qtdBombas)
 #rotinaRegrasBasicasLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
 #rotinaRegrasBasicasProbabilidadeLog(qtdLinhasTabela, qtdColunasTabela, qtdBombas)
-testeTabuleirosIguais()
+#testeTabuleirosIguais()
 #testeTabuleirosDiferentes()
 
 

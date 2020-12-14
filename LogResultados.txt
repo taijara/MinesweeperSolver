@@ -1,26 +1,26 @@
-Tabuleiro: 9 x 9
-Numero de Bombas 3
+Tabuleiro: 5 x 5
+Numero de Bombas 1
 
 Resultado Forca Bruta 
-Tempo de Execucao: 1.9456 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0019 milisegundos
+Tempo de Execucao: 6.5903 segundos
+Rodadas: 10000
+Tempo Medio por Rodada: 0.0007 milisegundos
 Quantidade de Vitorias: 0
-Quantidade de Derrotas: 1000
-Media de Acertos por Rodadas:7.58%
+Quantidade de Derrotas: 10000
+Media de Acertos por Rodadas:19.71%
 
 Resultado Regras Basicas + Forca Bruta 
-Tempo de Execucao: 23.5371 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0235 milisegundos
-Quantidade de Vitorias: 8
-Quantidade de Derrotas: 992
-Media de Acertos por Rodadas:78.24%
+Tempo de Execucao: 34.1228 segundos
+Rodadas: 10000
+Tempo Medio por Rodada: 0.0034 milisegundos
+Quantidade de Vitorias: 1551
+Quantidade de Derrotas: 8449
+Media de Acertos por Rodadas:82.43%
 
 Resultado Regras Basicas + Probabilidade nos clicks 
-Tempo de Execucao: 23.629 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0236 milisegundos
-Quantidade de Vitorias: 278
-Quantidade de Derrotas: 722
-Media de Acertos por Rodadas:95.19%
+Tempo de Execucao: 33.9267 segundos
+Rodadas: 10000
+Tempo Medio por Rodada: 0.0034 milisegundos
+Quantidade de Vitorias: 2947
+Quantidade de Derrotas: 7053
+Media de Acertos por Rodadas:92.32%

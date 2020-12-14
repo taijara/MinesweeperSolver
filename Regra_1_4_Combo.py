@@ -104,9 +104,12 @@ def posicao_3(n_linhas, n_colunas, tabuleiro):
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d + (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
-                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
-                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas])
-                ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
+                if dicionarioQuadradosLocal[d - n_colunas - 1][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas - 1])
+                if dicionarioQuadradosLocal[d - n_colunas][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas])
+                if dicionarioQuadradosLocal[d - n_colunas + 1][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d - n_colunas + 1])
         d = d + 1
     return ocorrencia
 
@@ -135,9 +138,12 @@ def posicao_4(n_linhas, n_colunas, tabuleiro):
                 tabuleiro[dicionarioQuadradosLocal[d - (2 * n_colunas)][0]][dicionarioQuadradosLocal[d - 1][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d - (2 * n_colunas)][0]][dicionarioQuadradosLocal[d][1]][1] = 'F'
                 tabuleiro[dicionarioQuadradosLocal[d - (2 * n_colunas)][0]][dicionarioQuadradosLocal[d + 1][1]][1] = 'F'
-                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
-                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas])
-                ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
+                if dicionarioQuadradosLocal[d + n_colunas - 1][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas - 1])
+                if dicionarioQuadradosLocal[d + n_colunas][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas])
+                if dicionarioQuadradosLocal[d + n_colunas + 1][1] == 'I':
+                    ocorrencia.append(dicionarioQuadradosLocal[d + n_colunas + 1])
         d = d + 1
     return ocorrencia
 
