@@ -1,26 +1,26 @@
-Tabuleiro: 7 x 7
-Numero de Bombas 2
+Tabuleiro: 15 x 15
+Numero de Bombas 20
 
 Resultado Forca Bruta 
-Tempo de Execucao: 1.2767 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0013 milisegundos
+Tempo de Execucao: 0.5675 segundos
+Rodadas: 100
+Tempo Medio por Rodada: 0.0057 milisegundos
 Quantidade de Vitorias: 0
-Quantidade de Derrotas: 1000
-Media de Acertos por Rodadas:12.43%
+Quantidade de Derrotas: 100
+Media de Acertos por Rodadas:3.04%
 
 Resultado Regras Basicas + Forca Bruta 
-Tempo de Execucao: 13.8693 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0139 milisegundos
-Quantidade de Vitorias: 27
-Quantidade de Derrotas: 973
-Media de Acertos por Rodadas:78.94%
+Tempo de Execucao: 8.2284 segundos
+Rodadas: 100
+Tempo Medio por Rodada: 0.0823 milisegundos
+Quantidade de Vitorias: 0
+Quantidade de Derrotas: 100
+Media de Acertos por Rodadas:45.77%
 
 Resultado Regras Basicas + Probabilidade nos clicks 
-Tempo de Execucao: 27.703 segundos
-Rodadas: 1000
-Tempo Medio por Rodada: 0.0277 milisegundos
-Quantidade de Vitorias: 207
-Quantidade de Derrotas: 793
-Media de Acertos por Rodadas:81.58%
+Tempo de Execucao: 93.6944 segundos
+Rodadas: 100
+Tempo Medio por Rodada: 0.9369 milisegundos
+Quantidade de Vitorias: 0
+Quantidade de Derrotas: 100
+Media de Acertos por Rodadas:56.61%

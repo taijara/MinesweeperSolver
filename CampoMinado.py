@@ -28,11 +28,11 @@ import copy
 
 
 # ----- Definindo qtd bombas e tamanho da grid ---
-qtdBombas = 2
-qtdLinhasTabela = 7
-qtdColunasTabela = 7
+qtdBombas = 20
+qtdLinhasTabela = 15
+qtdColunasTabela = 15
 tempoExecucao = 0
-qtdTabuleiros = 1000
+qtdTabuleiros = 100
 nivel = ''
 
 

@@ -183,7 +183,7 @@ def simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob):
     listaStatus = listarQuadradosStatus(n_linhas, n_colunas, tabuleiro)
     listaLocal = listarQuadradosLocal(n_linhas, n_colunas, tabuleiro)
     while l < len(prob):
-        print(prob)
+        #print(prob)
         if (prob[l] == 0.0) and listaStatus[l] == 'I':
             status = ManipulacaoTabuleiro.click(listaLocal[l][0], listaLocal[l][1], tabuleiro, n_linhas, n_colunas)
             flag = 1
