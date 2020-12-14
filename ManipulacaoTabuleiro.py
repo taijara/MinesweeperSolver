@@ -36,6 +36,47 @@ def listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas):
 
 # --------- Função para Virar Quadrados Vizinhos --------------
 def virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas):
+    i = 0
+    j = 0
+    controle = True
+    while controle:
+        controle = False
+        for i in range(n_linhas-1):
+            for j in range(n_colunas-1):
+                if tabuleiro[i][j][0] == 0 and tabuleiro[i][j][1] == 'A':
+                    if j - 1 >= 0 and tabuleiro[i][j - 1][0] == 0 and tabuleiro[i][j - 1][1] == 'I':
+                        tabuleiro[i][j - 1][1] = 'A'
+                        controle = True
+                        # print("teste 1")
+                    if i - 1 >= 0 and j - 1 >= 0 and tabuleiro[i - 1][j - 1][0] == 0 and tabuleiro[i - 1][j - 1][1] == 'I':
+                        tabuleiro[i - 1][j - 1][1] = 'A'
+                        controle = True
+                        # print("teste 2")
+                    if i - 1 >= 0 and tabuleiro[i - 1][j][0] == 0 and tabuleiro[i - 1][j][1] == 'I':
+                        tabuleiro[i - 1][j][1] = 'A'
+                        controle = True
+                        # print("teste 3")
+                    if i - 1 >= 0 and j + 1 <= (n_colunas - 1) and tabuleiro[i - 1][j + 1][0] == 0 and tabuleiro[i - 1][j + 1][1] == 'I':
+                        tabuleiro[i - 1][j + 1][1] = 'A'
+                        controle = True
+                        # print("teste 4")
+                    if j + 1 <= (n_colunas - 1) and tabuleiro[i][j + 1][0] == 0 and tabuleiro[i][j + 1][1] == 'I':
+                        tabuleiro[i][j + 1][1] = 'A'
+                        controle = True
+                        # print("teste 5")
+                    if i + 1 <= (n_linhas - 1) and j + 1 <= (n_colunas - 1) and tabuleiro[i + 1][j + 1][0] == 0 and tabuleiro[i + 1][j + 1][1] == 'I':
+                        tabuleiro[i + 1][j + 1][1] = 'A'
+                        controle = True
+                        # print("teste 6")
+                    if i + 1 <= (n_linhas - 1) and tabuleiro[i + 1][j][0] == 0 and tabuleiro[i + 1][j][1] == 'I':
+                        tabuleiro[i + 1][j][1] = 'A'
+                        controle = True
+                        # print("teste 7")
+                    if i + 1 <= (n_linhas - 1) and j - 1 >= 0 and tabuleiro[i + 1][j - 1][0] == 0 and tabuleiro[i + 1][j - 1][1] == 'I':
+                        tabuleiro[i + 1][j - 1][1] = 'A'
+                        controle = True
+                        # print("teste 8")
+    """
     # print('teste inicio funcao -')
     qVizinhos = listarQuadradosVizinhos(linha, coluna, n_linhas, n_colunas)
     # print('quadrados vizinhos',qVizinhos)
@@ -118,7 +159,7 @@ def virarQuadradosVizinhos(linha, coluna, tabuleiro, n_linhas, n_colunas):
             x = x + 1
 
         q = q + 1
-
+    """
 
 # ---------------------------------------------------------------
 
@@ -151,7 +192,9 @@ def colocarFlag(tabuleiro, i, j):
 # --------- Função 'Click' --------------
 def click(linha, coluna, tabuleiro, n_linhas, n_colunas):
     virarQuadrado(linha, coluna, tabuleiro)
+    print("quadrado clicado - [", linha, ",", coluna, "]")
     resultado = validarQuadrado(linha, coluna, tabuleiro)
+    print(resultado)
     # print(tabuleiro[linha][coluna])
     # print(tabuleiro[linha][coluna][0])
     if (resultado == 'ok'):
@@ -192,6 +235,14 @@ def encontrarQuadradoPeloNumero(numero, n_linhas, n_colunas, tabuleiro):
             break
     quadrado = [i, j]
     return quadrado
+
+def contarBombasMarcadas(n_linhas, n_colunas, tabuleiro):
+    contador = 0
+    for i in range(n_linhas):
+        for j in range(n_colunas):
+            if tabuleiro[i][j][1] == 'F':
+                contador = contador + 1
+    return contador
 
 
 # --------------------------------------------------------------------------------
