@@ -183,13 +183,15 @@ def simularClickProbabilistico(n_linhas, n_colunas, tabuleiro,prob):
     listaStatus = listarQuadradosStatus(n_linhas, n_colunas, tabuleiro)
     listaLocal = listarQuadradosLocal(n_linhas, n_colunas, tabuleiro)
     while l < len(prob):
-        #print(prob)
-        if (prob[l] == 0.0 or prob[l] == -0.0) and listaStatus[l] == 'I':
+        print(prob)
+        if (prob[l] == 0.0) and listaStatus[l] == 'I':
             status = ManipulacaoTabuleiro.click(listaLocal[l][0], listaLocal[l][1], tabuleiro, n_linhas, n_colunas)
             flag = 1
+            if status == "interromper":
+                break
         l = l + 1
     if flag == 0:
-        menorNumero = min(numero for numero in prob if numero != 0)
+        menorNumero = min(numero for numero in prob if numero != 0.0)
         indiceDoMenorNumero = prob.index(menorNumero)
         if tabuleiro[listaLocal[indiceDoMenorNumero][0]][listaLocal[indiceDoMenorNumero][1]] == 'F':
             simularClickProbabilistico(n_linhas, n_colunas, tabuleiro, prob)
